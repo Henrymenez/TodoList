@@ -1,0 +1,33 @@
+﻿@model IEnumerable<TodoList.BLL.Models.UserWithTaskViewModel>
+<h2>TodoList Page</h2>
+
+<table class="table table-bordeed table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Priority</th>
+            <th>DueDate</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach(var obj in Model)
+        {
+            <h4>@obj.Fullname</h4>
+            @foreach (var item in obj.Tasks)
+            {
+                
+            
+            <tr>
+                
+            <td>@item.Title</td> 
+            <td>@item.Description</td>
+            <td>@item.Priority</td>
+            <td>@item.DueDate</td>
+            <td>@item.Status</td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>
