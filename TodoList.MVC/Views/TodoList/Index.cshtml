@@ -1,9 +1,15 @@
 ﻿@model IEnumerable<TodoList.BLL.Models.UserWithTaskViewModel>
+@{
+    ViewData["Title"] = "TodoList Page";
+}
 <h2>TodoList Page</h2>
-
+ @foreach(var obj in Model.Select((value,i)=> new {value, i}))
+        {
+            <h4>@(obj.i + 1) @obj.value.Fullname's Todo List</h4>
 <table class="table table-bordeed table-striped">
     <thead>
         <tr>
+            <td></td>
             <th>Title</th>
             <th>Description</th>
             <th>Priority</th>
@@ -12,22 +18,21 @@
         </tr>
     </thead>
     <tbody>
-         @foreach(var obj in Model)
-        {
-            <h4>@obj.Fullname</h4>
-            @foreach (var item in obj.Tasks)
+
+            @foreach (var item in obj.value.Tasks.Select((value, i) => new { value, i }))
             {
                 
             
             <tr>
-                
-            <td>@item.Title</td> 
-            <td>@item.Description</td>
-            <td>@item.Priority</td>
-            <td>@item.DueDate</td>
-            <td>@item.Status</td>
+                <td>@(item.i + 1)</td>
+            <td>@item.value.Title</td> 
+            <td>@item.value.Description</td>
+            <td>@item.value.Priority</td>
+            <td>@item.value.DueDate</td>
+            <td>@item.value.Status</td>
         </tr>
             }
-        }
+       
     </tbody>
 </table>
+}

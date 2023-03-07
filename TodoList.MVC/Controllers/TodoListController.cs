@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TodoList.BLL.Implementation;
 using TodoList.BLL.Interfaces;
 using TodoList.BLL.Models;
 
@@ -7,15 +6,15 @@ namespace TodoList.MVC.Controllers
 {
     public class TodoListController : Controller
     {
-        private readonly IUserService _user;
+        private readonly IUserService _userService;
 
-        public TodoListController(IUserService user)
+        public TodoListController(IUserService userService)
         {
-            _user = user;
+            _userService = userService;
         }
         public IActionResult Index()
         {
-      IEnumerable<UserWithTaskViewModel> userWithTaskViewModels = _user.GetUsersWithTask().ToList();
+            IEnumerable<UserWithTaskViewModel> userWithTaskViewModels = _userService.GetUsersWithTask().ToList();
             return View(userWithTaskViewModels);
         }
     }
